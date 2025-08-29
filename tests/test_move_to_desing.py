@@ -25,11 +25,9 @@ class Test_profile_constructor_logo:
         )
         constructor_button =  driver.find_element(*Locators.constructor_button)
         constructor_button.click()
-        WebDriverWait(driver, 10).until(
+        assert WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(Locators.inscription_buns)
         )
-
-        assert len(driver.find_elements(*Locators.inscription_buns)) > 0
     
     # Тест переход из ЛК на лого
     def test_acc_and_logo(self, start_from_personal_account):
