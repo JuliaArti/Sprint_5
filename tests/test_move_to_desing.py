@@ -40,11 +40,10 @@ class Test_profile_constructor_logo:
         )
         logo_stellar_burgers =  driver.find_element(*Locators.logo_stellar_burgers)
         logo_stellar_burgers.click()
-        WebDriverWait(driver, 10).until(
+
+        assert WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(Locators.inscription_buns)
         )
-
-        assert len(driver.find_elements(*Locators.inscription_buns)) > 0
    
     # Тест Конструктор переход к разделам
     def test_sections(self, driver):
@@ -89,7 +88,7 @@ class Test_profile_constructor_logo:
             EC.visibility_of_element_located(Locators.inscription_buns_active)
         )
         
-    # Тест  переход по клику на «Личный кабинет».
+    # Тест переход по клику на «Личный кабинет».
     def test_personal_account(self, start_from_personal_account):
 
         driver = start_from_personal_account
