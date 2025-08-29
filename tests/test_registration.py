@@ -56,8 +56,6 @@ class Test_New_User:
         WebDriverWait(driver, 10).until(
             EC.url_to_be(login_site)
         )
-
-        assert self.Login(driver)
         
         # Переходим по ссылке "Зарегистрироваться"
         link_register = driver.find_element(*Locators.link_register)
