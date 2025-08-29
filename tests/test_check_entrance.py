@@ -2,14 +2,6 @@
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-
-import sys
-import os
-
-# Добавляем родительскую папку в путь поиска модулей
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from locators import Locators
 from data import Credential
 from urls import *

@@ -1,14 +1,5 @@
-
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-
-import sys
-import os
-
-# Добавляем родительскую папку в путь поиска модулей
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from generation_ep import EmailPasswordGenerator
 from locators import Locators
 from data import Credential
@@ -79,9 +70,9 @@ class Test_New_User:
         # Кликаем кнопку "Зарегистрироваться"
         button_register = driver.find_element(*Locators.button_register)
         button_register.click()
-        WebDriverWait(driver, 10).until(
+        assert WebDriverWait(driver, 10).until(
             EC.url_to_be(register_site)
-        )   
+        )
 
        
 
