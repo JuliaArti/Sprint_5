@@ -76,11 +76,8 @@ class Test_Authorization:
         return driver.current_url == main_site
          
     # Тест выход     
-    def test_logout(self, start_after_login):
-        driver = start_after_login
-
-        personal_account_button = driver.find_element(*Locators.personal_account_button)
-        personal_account_button.click()
+    def test_logout(self, start_from_personal_account):
+        driver = start_from_personal_account
 
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(Locators.button_exit)
