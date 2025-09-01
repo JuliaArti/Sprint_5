@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from locators import Locators
 from urls import *
 
-class Test_profile_constructor_logo: 
+class Test_profile_transition: 
     
     # Тест переход из ЛК в Конструктор
     def test_acc_and_constructor(self, start_from_personal_account):
@@ -19,7 +19,8 @@ class Test_profile_constructor_logo:
         assert WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(Locators.inscription_buns)
         )
-    
+
+     
     # Тест переход из ЛК на лого
     def test_acc_and_logo(self, start_from_personal_account):
         
@@ -36,16 +37,21 @@ class Test_profile_constructor_logo:
             EC.presence_of_element_located(Locators.inscription_buns)
         )
    
-    # Тест Конструктор переход к разделам
-    def test_sections(self, driver):
-        driver.get(main_site)
+    # Тест переход по клику на «Личный кабинет».
+    def test_personal_account(self, start_from_personal_account):
 
-        # Переход к Конструктору
-        constructor_button =  driver.find_element(*Locators.constructor_button)
-        constructor_button.click()
-        WebDriverWait(driver, 10).until(
-            EC.url_to_be(main_site)
+        driver = start_from_personal_account
+
+        assert WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(Locators.button_exit)
         )
+
+
+class Test_constructor:
+
+    #  Тест переход к начинкам
+    def test_section_fillings(self, driver):
+        driver.get(main_site)
        
         # Ждем отображения страницы
         WebDriverWait(driver, 10).until(
@@ -62,6 +68,14 @@ class Test_profile_constructor_logo:
         )
 
         # переход к Соусам
+    def test_section_sauce(self, driver):
+        driver.get(main_site)
+       
+        # Ждем отображения страницы
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(Locators.inscription_sauce)
+        )
+
         inscription_sauce =  driver.find_element(*Locators.inscription_sauce)
         inscription_sauce.click()
 
@@ -70,7 +84,22 @@ class Test_profile_constructor_logo:
             EC.visibility_of_element_located(Locators.inscription_sauce_active)
         )
 
-        # переход к Булкам
+        # переход от Начинок к Булкам
+    def test_section_buns(self, driver):
+        driver.get(main_site)
+       
+        # Ждем отображения страницы
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(Locators.inscription_fillings)
+        )
+        inscription_fillings =  driver.find_element(*Locators.inscription_fillings)
+        inscription_fillings.click()
+
+        # Ждем начинки
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(Locators.inscription_fillings_active)
+        )
+        # Переход к Булкам
         inscription_buns =  driver.find_element(*Locators.inscription_buns)
         inscription_buns.click()
 
@@ -79,13 +108,4 @@ class Test_profile_constructor_logo:
             EC.visibility_of_element_located(Locators.inscription_buns_active)
         )
         
-    # Тест переход по клику на «Личный кабинет».
-    def test_personal_account(self, start_from_personal_account):
-
-        driver = start_from_personal_account
-
-        assert WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located(Locators.button_exit)
-        )
-
     
