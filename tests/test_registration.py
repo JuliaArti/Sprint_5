@@ -5,7 +5,7 @@ from locators import Locators
 from data import Credential
 from urls import *
 
-class Test_New_User: 
+class TestNewUser: 
 
     # Тест регистрация нового пользователя
     def test_registration_new_user(self, start_from_registration_page):

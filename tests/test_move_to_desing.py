@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from locators import Locators
 from urls import *
 
-class Test_profile_transition: 
+class TestProfileTransition: 
     
     # Тест переход из ЛК в Конструктор
     def test_acc_and_constructor(self, start_from_personal_account):
@@ -47,7 +47,7 @@ class Test_profile_transition:
         )
 
 
-class Test_constructor:
+class TestConstructor:
 
     #  Тест переход к начинкам
     def test_section_fillings(self, driver):

@@ -6,7 +6,7 @@ from locators import Locators
 from data import Credential
 from urls import *
 
-class Test_Authorization:
+class TestAuthorization:
 
     # Тест авторизация через Войти в акк на гл странице
     def test_login_enter_acc(self, driver):
@@ -18,7 +18,7 @@ class Test_Authorization:
             EC.url_to_be(login_site)
         )
 
-        assert self.Login(driver)
+        assert self.login(driver)
 
     # Тест авторизация через ЛК
     def test_successful_login(self, start_after_login):
@@ -36,7 +36,7 @@ class Test_Authorization:
             EC.url_to_be(login_site)   
         )
 
-        assert self.Login(driver)
+        assert self.login(driver)
     
     # Тест вход через кнопку в форме востановления пароля
     def test_restore_password_login(self, start_from_login_page):
@@ -56,9 +56,9 @@ class Test_Authorization:
             EC.url_to_be(login_site)   
         )
 
-        assert self.Login(driver)
+        assert self.login(driver)
     
-    def Login(self, driver):
+    def login(self, driver):
 
         driver.find_element(*Locators.input_field_email).send_keys(Credential.email)
         driver.find_element(*Locators.input_field_password).send_keys(Credential.password)
